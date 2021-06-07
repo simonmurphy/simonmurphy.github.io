@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tableset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:vod="http://www.ivoa.net/xml/VODataService/v1.1" xsi:type="vod:TableSet">
+	<schema>
+		<name>TAP_SCHEMA</name>
+	</schema>
+	<schema>
+		<name>public</name>
+		<table type="base_table">
+			<name>public.ids</name>
+			<description>Table of individual object and image IDs combined into the master photometry table</description>
+			<column std="false">
+				<name>object_id</name>
+				<description>Global unique object ID in the master table. Note: this ID will change in DR1 but be constant in subsequent data releases.</description>
+				<ucd>meta.id;meta.main</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+			</column>
+			<column std="false">
+				<name>object_id_local</name>
+				<description>Object ID in this (image,amp) tuple. Not globally unique.</description>
+				<ucd>meta.id</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+			</column>
+			<column std="false">
+				<name>image_id</name>
+				<description>Unique image ID as determined by the SDP</description>
+				<ucd>meta.id</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+			</column>
+			<column std="false">
+				<name>amp</name>
+				<description>CCD on which the object was detected (1-32)</description>
+				<ucd>meta.id</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+			</column>
+			<column std="false">
+				<name>image_type</name>
+				<description>Type of image (fs=Fast Survey, ms=Main Survey, std=Standard field)</description>
+				<ucd>meta.code.class</ucd>
+				<dataType xsi:type="vod:TAPType">CHAR</dataType>
+				<flag>indexed</flag>
+			</column>
+			<column std="false">
+				<name>in_master</name>
+				<description>Was observation used to construct object parameters in master table (0 or 1)</description>
+				<ucd>meta.code.member</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>primary</flag>
+			</column>
+		</table>
+		<table type="base_table">
+			<name>public.fs_photometry</name>
+			<description>Table of individual image photometric, astrometric and shape measurements</description>
+			<column std="false">
+				<name>object_id_local</name>
+				<description>Object ID in this (image,amp) tuple. Not globally unique.</description>
+				<ucd>meta.id</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>image_id</name>
+				<description>Unique image ID as determined by the SDP</description>
+				<ucd>meta.id</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>amp</name>
+				<description>CCD on which the object was detected (1-32)</description>
+				<ucd>meta.id</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>filter</name>
+				<description>SkyMapper photometric filter (u,v,g,r,i,z)</description>
+				<ucd>instr.filter</ucd>
+				<dataType xsi:type="vod:TAPType">CHAR</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>ra_img</name>
+				<description>ICRS Right Ascension of the object on this image</description>
+				<unit>deg</unit>
+				<ucd>pos.eq.ra;meta.main</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>decl_img</name>
+				<description>ICRS Declination of the object on this image</description>
+				<unit>deg</unit>
+				<ucd>pos.eq.dec;meta.main</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>x_img</name>
+				<description>Pixel coordinate of the object on this image</description>
+				<unit>pix</unit>
+				<ucd>pos.cartesian.x</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>y_img</name>
+				<description>Pixel coordinate of the object on this image</description>
+				<unit>pix</unit>
+				<ucd>pos.cartesian.y</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flags</name>
+				<description>Flags raised by Source Extractor </description>
+				<ucd>meta.code</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+			</column>
+			<column std="false">
+				<name>nimaflags</name>
+				<description>Number of flagged pixels from bad, saturated and crosstalk pixel mask</description>
+				<ucd>meta.code</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+			</column>
+			<column std="false">
+				<name>background</name>
+				<description>Mean background level in counts</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_max</name>
+				<description>Peak count above background of the brightest object pixel</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mu_max</name>
+				<description>ZP-corrected peak surface brightness of object above background</description>
+				<unit>mag/arcsec2</unit>
+				<ucd>phot.mag.sb;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>class_star</name>
+				<description>Source Extractor stellarity index (between 0 and 1)</description>
+				<ucd>src.class.stargalaxy</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>a</name>
+				<description>Length of object major axis in pixels</description>
+				<unit>pix</unit>
+				<ucd>phys.angsize;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_a</name>
+				<description>Error in major axis</description>
+				<unit>pix</unit>
+				<ucd>stat.error;phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>b</name>
+				<description>Length of object minor axis in pixels</description>
+				<unit>pix</unit>
+				<ucd>phys.angsize;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_b</name>
+				<description>Error in minor axis</description>
+				<unit>pix</unit>
+				<ucd>stat.error;phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>pa</name>
+				<description>Object position angle on sky</description>
+				<unit>deg</unit>
+				<ucd>pos.posang;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_pa</name>
+				<description>Error in position angle</description>
+				<unit>deg</unit>
+				<ucd>stat.error;pos.posang</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>elong</name>
+				<description>Object elongation (a/b)</description>
+				<ucd>phys.size.axisratio;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>fwhm</name>
+				<description>Object full width at half maximum in pixels</description>
+				<unit>pix</unit>
+				<ucd>phys.angsize;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>radius_petro</name>
+				<description>Radius of Petrosian ellipse in units of a and b</description>
+				<ucd>phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>radius_kron</name>
+				<description>Radius of Kron ellipse in units of a and b</description>
+				<ucd>phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>radius_frac20</name>
+				<description>Radius of circular aperture enclosing 20 per cent of total (Kron) flux</description>
+				<unit>pix</unit>
+				<ucd>phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>radius_frac50</name>
+				<description>Radius of circular aperture enclosing 50 per cent of total (Kron) flux (i.e. half-light radius)</description>
+				<unit>pix</unit>
+				<ucd>phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>radius_frac90</name>
+				<description>Radius of circular aperture enclosing 90 per cent of total (Kron) flux</description>
+				<unit>pix</unit>
+				<ucd>phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>chi2_psf</name>
+				<description>Reduced Chi-squared of PSF fit</description>
+				<ucd>stat.fit.chi2</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_psf</name>
+				<description>Total counts under PSF fit</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_psf</name>
+				<description>Error in PSF counts</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_psf</name>
+				<description>ZP-corrected PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_mag_psf</name>
+				<description>Error in PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>flux_petro</name>
+				<description>Total counts within Petrosian ellipse</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_petro</name>
+				<description>Error in Petrosian flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_petro</name>
+				<description>ZP-corrected Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_mag_petro</name>
+				<description>Error in Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>flux_kron</name>
+				<description>Total counts within Kron ellipse</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_kron</name>
+				<description>Error in Kron flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_kron</name>
+				<description>ZP-corrected Kron magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_mag_kron</name>
+				<description>Error in Kron magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>flux_ap02</name>
+				<description>Total counts within 2 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap02</name>
+				<description>Error in 2 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap02</name>
+				<description>ZP-corrected magnitude within 2 arcsec diameter aperture, corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap02</name>
+				<description>Error in 2 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap03</name>
+				<description>Total counts within 3 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap03</name>
+				<description>Error in 3 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap03</name>
+				<description>ZP-corrected magnitude within 3 arcsec diameter aperture, corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap03</name>
+				<description>Error in 3 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap04</name>
+				<description>Total counts within 4 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap04</name>
+				<description>Error in 4 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap04</name>
+				<description>ZP-corrected magnitude within 4 arcsec diameter aperture, corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap04</name>
+				<description>Error in 4 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap05</name>
+				<description>Total counts within 5 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap05</name>
+				<description>Error in 5 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap05</name>
+				<description>ZP-corrected magnitude within 5 arcsec diameter aperture, corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap05</name>
+				<description>Error in 5 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap06</name>
+				<description>Total counts within 6 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap06</name>
+				<description>Error in 6 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap06</name>
+				<description>ZP-corrected magnitude within 6 arcsec diameter aperture, corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap06</name>
+				<description>Error in 6 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap08</name>
+				<description>Total counts within 8 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap08</name>
+				<description>Error in 8 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap08</name>
+				<description>ZP-corrected magnitude within 8 arcsec diameter aperture, corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap08</name>
+				<description>Error in 8 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap10</name>
+				<description>Total counts within 10 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap10</name>
+				<description>Error in 10 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap10</name>
+				<description>ZP-corrected magnitude within 10 arcsec diameter aperture, corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap10</name>
+				<description>Error in 10 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap15</name>
+				<description>Total counts within 15 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap15</name>
+				<description>Error in 15 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap15</name>
+				<description>ZP-corrected magnitude within 15 arcsec diameter aperture, NOT corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap15</name>
+				<description>Error in 15 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap20</name>
+				<description>Total counts within 20 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap20</name>
+				<description>Error in 20 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap20</name>
+				<description>ZP-corrected magnitude within 20 arcsec diameter aperture, NOT corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap20</name>
+				<description>Error in 20 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flux_ap30</name>
+				<description>Total counts within 30 arcsec diameter aperture centred on object</description>
+				<unit>ct</unit>
+				<ucd>phot.count;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_flux_ap30</name>
+				<description>Error in 30 arcsec aperture flux</description>
+				<unit>ct</unit>
+				<ucd>stat.error;phot.count</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mag_ap30</name>
+				<description>ZP-corrected magnitude within 30 arcsec diameter aperture, NOT corrected for PSF losses</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;src</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_mag_ap30</name>
+				<description>Error in 30 arcsec aperture magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+		</table>
+		<table type="base_table">
+			<name>public.images</name>
+			<description>Table of exposures and telescope information</description>
+			<column std="false">
+				<name>image_id</name>
+				<description>Unique image ID as determined by the SDP</description>
+				<ucd>meta.id;meta.main</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>night_mjd</name>
+				<description>Truncated Modified Julian Date at the start of night</description>
+				<ucd>meta.id</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+			</column>
+			<column std="false">
+				<name>mjd_obs</name>
+				<description>Modified Julian Date at the start of the exposure</description>
+				<ucd>time.epoch;obs.exposure</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>ra_obs</name>
+				<description>Right Ascension of the exposure centre taken from the telescope</description>
+				<unit>deg</unit>
+				<ucd>pos.eq.ra;meta.main</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>decl_obs</name>
+				<description>Declination of the exposure centre taken from the telescope</description>
+				<unit>deg</unit>
+				<ucd>pos.eq.dec;meta.main</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>airmass_obs</name>
+				<description>Airmass of the exposure centre taken from the telescope</description>
+				<ucd>obs.airmass</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>field_id</name>
+				<description>Unique SkyMapper field ID</description>
+				<ucd>obs.field</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>exptime</name>
+				<description>Exposure time</description>
+				<unit>s</unit>
+				<ucd>time.duration;obs.exposure</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>filter</name>
+				<description>SkyMapper photometric filter (u,v,g,r,i,z)</description>
+				<ucd>instr.filter</ucd>
+				<dataType xsi:type="vod:TAPType">CHAR</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>rotator_pos</name>
+				<description>Angular position of the instrument rotator</description>
+				<unit>deg</unit>
+				<ucd>instr.param</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>image_type</name>
+				<description>Type of image (fs=Fast Survey, ms=Main Survey, std=Standard field)</description>
+				<ucd>meta.code.class</ucd>
+				<dataType xsi:type="vod:TAPType" size="2">CHAR</dataType>
+				<flag>primary</flag>
+			</column>
+		</table>
+		<table type="base_table">
+			<name>public.master</name>
+			<description>Primary table of mean astrometric and photometric measurements</description>
+			<column std="false">
+				<name>object_id</name>
+				<description>Global unique object ID</description>
+				<ucd>meta.id;meta.main</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>ra</name>
+				<description>Mean ICRS Right Ascension of the object</description>
+				<unit>deg</unit>
+				<ucd>pos.eq.ra;meta.main;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>decl</name>
+				<description>Mean ICRS Declination of the object</description>
+				<unit>deg</unit>
+				<ucd>pos.eq.dec;meta.main;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>ra_rms</name>
+				<description>RMS variation around the mean Right Ascension</description>
+				<unit>deg</unit>
+				<ucd>stat.stdev;pos.eq.ra</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>decl_rms</name>
+				<description>RMS variation around the mean Declination</description>
+				<unit>deg</unit>
+				<ucd>stat.stdev;pos.eq.dec</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>mean_epoch</name>
+				<description>Mean MJD epoch of the observations</description>
+				<ucd>time.epoch;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>mean_epoch_rms</name>
+				<description>RMS variation around the mean epoch</description>
+				<ucd>stat.stdev;time.epoch</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>flags</name>
+				<description>Bitwise OR of Source Extractor flags from photometry table</description>
+				<ucd>meta.code</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">INTEGER</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>class_star</name>
+				<description>Mean Source Extractor stellarity index (between 0 and 1)</description>
+				<ucd>src.class.stargalaxy</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>radius_petro</name>
+				<description>Mean r-band Petrosian radius</description>
+				<ucd>phys.angsize;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>a</name>
+				<description>Mean r-band major axis length</description>
+				<unit>pix</unit>
+				<ucd>phys.angsize;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_a</name>
+				<description>Error in mean r-band major axis length</description>
+				<unit>pix</unit>
+				<ucd>stat.error;phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>b</name>
+				<description>Mean r-band minor axis length</description>
+				<unit>pix</unit>
+				<ucd>phys.angsize;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_b</name>
+				<description>Error in mean r-band minor axis length</description>
+				<unit>pix</unit>
+				<ucd>stat.error;phys.angsize</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>pa</name>
+				<description>Mean r-band position angle</description>
+				<unit>deg</unit>
+				<ucd>pos.posang;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>e_pa</name>
+				<description>Error in mean r-band position angle</description>
+				<unit>deg</unit>
+				<ucd>stat.error;pos.posang</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>u_psf</name>
+				<description>Mean u-band ZP-corrected PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_u_psf</name>
+				<description>Error in u-band PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>u_petro</name>
+				<description>Mean u-band ZP-corrected Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_u_petro</name>
+				<description>Error in u-band Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>v_psf</name>
+				<description>Mean v-band ZP-corrected PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_v_psf</name>
+				<description>Error in v-band PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>v_petro</name>
+				<description>Mean v-band ZP-corrected Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_v_petro</name>
+				<description>Error in v-band Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>g_psf</name>
+				<description>Mean v-band ZP-corrected PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_g_psf</name>
+				<description>Error in v-band PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>g_petro</name>
+				<description>Mean g-band ZP-corrected Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_g_petro</name>
+				<description>Error in g-band Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>r_psf</name>
+				<description>Mean r-band ZP-corrected PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_r_psf</name>
+				<description>Error in r-band PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>r_petro</name>
+				<description>Mean r-band ZP-corrected Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_r_petro</name>
+				<description>Error in r-band Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>i_psf</name>
+				<description>Mean i-band ZP-corrected PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_i_psf</name>
+				<description>Error in i-band PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>i_petro</name>
+				<description>Mean i-band ZP-corrected Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_i_petro</name>
+				<description>Error in i-band Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>z_psf</name>
+				<description>Mean z-band ZP-corrected PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_z_psf</name>
+				<description>Error in z-band PSF magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+			<column std="false">
+				<name>z_petro</name>
+				<description>Mean z-band ZP-corrected Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>phot.mag;stat.mean</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+				<flag>indexed</flag>
+				<flag>primary</flag>
+			</column>
+			<column std="false">
+				<name>e_z_petro</name>
+				<description>Error in z-band Petrosian magnitude</description>
+				<unit>mag</unit>
+				<ucd>stat.error;phot.mag</ucd>
+				<dataType xsi:type="vod:TAPType" size="1">DOUBLE</dataType>
+			</column>
+		</table>
+	</schema>
+</tableset>

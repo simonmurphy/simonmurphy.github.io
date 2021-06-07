@@ -1,0 +1,307 @@
+<?xml version='1.0'?>
+<VOTABLE version="1.1"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.1 http://www.ivoa.net/xml/VOTable/v1.1"
+ xmlns="http://www.ivoa.net/xml/VOTable/v1.1">
+<!--
+ !  VOTable written by STIL version 2.7 (uk.ac.starlink.votable.VOTableWriter)
+ !  at 2009-04-14T04:00:52
+ !-->
+<RESOURCE>
+<TABLE name="Eta Cha known members" nrows="18">
+<PARAM arraysize="*" datatype="char" name="Source" value="Table data from Fernandez (2008) A&amp;A..480..735">
+<DESCRIPTION>Source paper of table data</DESCRIPTION>
+</PARAM>
+<FIELD arraysize="17" datatype="char" name="name">
+<DESCRIPTION>Designation</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="14" datatype="char" name="alt_name">
+<DESCRIPTION>Alternative designation</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="RA" ucd="POS_EQ_RA" unit="degrees">
+<DESCRIPTION>RIght Ascension (J2000) (col3+col4/60.0+col5/3600.0) ($3*15)</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="DEC" ucd="POS_EQ_DEC" unit="degrees">
+<DESCRIPTION>Declination (J2000) (col6-col7/60.0-col8/3600.0)</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="9" datatype="char" name="sptype">
+<DESCRIPTION>Spectral Type</DESCRIPTION>
+</FIELD>
+<FIELD datatype="float" name="V" unit="mag">
+<DESCRIPTION>V magnitude</DESCRIPTION>
+</FIELD>
+<FIELD datatype="float" name="VmI" unit="mag">
+<DESCRIPTION>V-I colour</DESCRIPTION>
+</FIELD>
+<FIELD datatype="float" name="Pi" unit="mas">
+<DESCRIPTION>Hipparcos Parallax</DESCRIPTION>
+</FIELD>
+<FIELD datatype="float" name="sPi" unit="mas">
+<DESCRIPTION>Error on parallax</DESCRIPTION>
+</FIELD>
+<FIELD datatype="float" name="LiEW" unit="A">
+<DESCRIPTION>Lithium 6708 equivalent width</DESCRIPTION>
+</FIELD>
+<FIELD datatype="float" name="Vr" unit="km/s">
+<DESCRIPTION>Radial velocity</DESCRIPTION>
+</FIELD>
+<FIELD datatype="float" name="sVr" unit="km/s"/>
+<DATA>
+<TABLEDATA>
+  <TR>
+    <TD>ECHA_J0836.2-7908</TD>
+    <TD>-</TD>
+    <TD>129.0441666682561</TD>
+    <TD>-79.13833333333334</TD>
+    <TD>M5.5</TD>
+    <TD>17.66</TD>
+    <TD>3.76</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.6</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_1</TD>
+    <TD>EG_Cha</TD>
+    <TD>129.2341666698456</TD>
+    <TD>-78.94611111111111</TD>
+    <TD>K4</TD>
+    <TD>10.61</TD>
+    <TD>1.42</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.52</TD>
+    <TD>18.0</TD>
+    <TD>2.0</TD>
+  </TR>
+  <TR>
+    <TD>ECHA_J0838.9-7916</TD>
+    <TD>-</TD>
+    <TD>129.71458333333334</TD>
+    <TD>-79.27055555555556</TD>
+    <TD>M5.2</TD>
+    <TD>16.82</TD>
+    <TD>3.54</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.3</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_2</TD>
+    <TD>eta_Cha</TD>
+    <TD>130.33125</TD>
+    <TD>-78.96333333333334</TD>
+    <TD>B8V</TD>
+    <TD>5.46</TD>
+    <TD>99.0</TD>
+    <TD>10.32</TD>
+    <TD>0.43</TD>
+    <TD>0.0</TD>
+    <TD>14.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>ECHA_J0841.5-7853</TD>
+    <TD>-</TD>
+    <TD>130.37750000158945</TD>
+    <TD>-78.88527777777779</TD>
+    <TD>M4</TD>
+    <TD>17.07</TD>
+    <TD>3.25</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.9</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_3</TD>
+    <TD>EH_Cha</TD>
+    <TD>130.40500000317894</TD>
+    <TD>-79.0586111111111</TD>
+    <TD>M3</TD>
+    <TD>14.35</TD>
+    <TD>2.54</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.6</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>HD_75505</TD>
+    <TD>TYC_9403-119-1</TD>
+    <TD>130.43625000317894</TD>
+    <TD>-79.04805555555555</TD>
+    <TD>A5</TD>
+    <TD>7.27</TD>
+    <TD>0.15</TD>
+    <TD>11.9</TD>
+    <TD>2.6</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_4</TD>
+    <TD>EI_Cha</TD>
+    <TD>130.5987500031789</TD>
+    <TD>-79.06777777777778</TD>
+    <TD>M1</TD>
+    <TD>12.79</TD>
+    <TD>1.99</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.6</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_5</TD>
+    <TD>EK_Cha</TD>
+    <TD>130.61374999682107</TD>
+    <TD>-78.96361111111112</TD>
+    <TD>M4</TD>
+    <TD>15.2</TD>
+    <TD>2.81</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.6</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_6</TD>
+    <TD>EL_Cha</TD>
+    <TD>130.6625</TD>
+    <TD>-78.91222222222223</TD>
+    <TD>M3</TD>
+    <TD>14.08</TD>
+    <TD>2.4</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.5</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_7</TD>
+    <TD>EM_Cha</TD>
+    <TD>130.7820833325386</TD>
+    <TD>-79.08111111111111</TD>
+    <TD>K4</TD>
+    <TD>10.84</TD>
+    <TD>1.4</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.46</TD>
+    <TD>4.3</TD>
+    <TD>2.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_8</TD>
+    <TD>RS_Cha</TD>
+    <TD>130.80083333253862</TD>
+    <TD>-79.07</TD>
+    <TD>A8V+A8V</TD>
+    <TD>6.28</TD>
+    <TD>99.0</TD>
+    <TD>10.23</TD>
+    <TD>0.46</TD>
+    <TD>0.0</TD>
+    <TD>15.9</TD>
+    <TD>0.5</TD>
+  </TR>
+  <TR>
+    <TD>ECHA_J0843.3-7905</TD>
+    <TD>-</TD>
+    <TD>130.82666666507723</TD>
+    <TD>-79.08916666666666</TD>
+    <TD>M2</TD>
+    <TD>13.97</TD>
+    <TD>2.2</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.6</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>ECHA_J0844.2-7833</TD>
+    <TD>-</TD>
+    <TD>131.03791666825612</TD>
+    <TD>-78.56277777777777</TD>
+    <TD>M4.5/M5.5</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.48</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_9</TD>
+    <TD>EN_Cha</TD>
+    <TD>131.06916666825612</TD>
+    <TD>-78.98583333333333</TD>
+    <TD>M4</TD>
+    <TD>15.0</TD>
+    <TD>2.99</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.5</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_10</TD>
+    <TD>EO_Cha</TD>
+    <TD>131.13416666984557</TD>
+    <TD>-78.77555555555556</TD>
+    <TD>M0</TD>
+    <TD>12.53</TD>
+    <TD>1.78</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.52</TD>
+    <TD>15.0</TD>
+    <TD>2.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_11</TD>
+    <TD>EP_Cha</TD>
+    <TD>131.75749999980133</TD>
+    <TD>-78.99305555555556</TD>
+    <TD>K4</TD>
+    <TD>11.13</TD>
+    <TD>1.37</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.4</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+  </TR>
+  <TR>
+    <TD>RECX_12</TD>
+    <TD>EQ_Cha</TD>
+    <TD>131.98708333969114</TD>
+    <TD>-78.915</TD>
+    <TD>M2</TD>
+    <TD>13.17</TD>
+    <TD>2.37</TD>
+    <TD>99.0</TD>
+    <TD>99.0</TD>
+    <TD>0.61</TD>
+    <TD>18.0</TD>
+    <TD>2.0</TD>
+  </TR>
+</TABLEDATA>
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>

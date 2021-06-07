@@ -1,0 +1,14 @@
+<span class="kw1">Listen</span> 8080
+<span class="kw1">LoadModule</span> python_module libexec/apache2/mod_python.so
+&nbsp;
+&lt;<span class="kw3">VirtualHost</span> *:8080&gt;
+        <span class="kw1">DocumentRoot</span> <span class="st0">&quot;/Users/Azrael/VO/conesearch&quot;</span>
+        &lt;<span class="kw3">Location</span> /&gt;
+                <span class="kw1">Allow</span> From <span class="kw2">All</span>
+                PythonPath <span class="st0">&quot;sys.path+['/Users/Azrael/VO/conesearch']&quot;</span>
+                <span class="kw1">SetHandler</span> python-program
+                PythonHandler cherrypy._cpmodpy::handler
+                PythonOption cherrypy.setup initialise::serverless
+                PythonDebug <span class="kw2">On</span>
+        &lt;/<span class="kw3">Location</span>&gt;
+&lt;/<span class="kw3">VirtualHost</span>&gt;

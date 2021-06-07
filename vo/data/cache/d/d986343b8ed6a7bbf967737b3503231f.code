@@ -1,0 +1,37 @@
+<span class="kw1">import</span> cherrypy
+<span class="kw1">import</span> conesearch
+&nbsp;
+__doc__ = <span class="st0">&quot;&quot;&quot;
+Master configuration file for setting up one or more CherryPy
+Cone Search services (apps). Each app must be mounted at a 
+separate location.
+&quot;&quot;&quot;</span>
+&nbsp;
+<span class="kw1">def</span> start<span class="br0">&#40;</span><span class="br0">&#41;</span>:
+    <span class="co1"># Site-wide config</span>
+    cherrypy.<span class="me1">config</span>.<span class="me1">update</span><span class="br0">&#40;</span>conesearch.<span class="me1">current_dir</span>+<span class="st0">'/site.config'</span><span class="br0">&#41;</span>
+    <span class="co1"># Mount the static files so they are accessible by all</span>
+    config = <span class="br0">&#123;</span><span class="st0">'/static'</span>:<span class="br0">&#123;</span><span class="st0">'tools.staticdir.on'</span>: <span class="kw2">True</span>,<span class="st0">'tools.staticdir.dir'</span>: cones
+earch.<span class="me1">current_dir</span>+<span class="st0">'/static'</span>,<span class="br0">&#125;</span><span class="br0">&#125;</span>
+    cherrypy.<span class="me1">tree</span>.<span class="me1">mount</span><span class="br0">&#40;</span>conesearch.<span class="me1">Common</span><span class="br0">&#40;</span><span class="br0">&#41;</span>, <span class="st0">'/common'</span>, config<span class="br0">&#41;</span>
+    <span class="co1"># Mount each app and load its own config</span>
+    cherrypy.<span class="me1">tree</span>.<span class="me1">mount</span><span class="br0">&#40;</span>conesearch.<span class="me1">ConeSearch</span><span class="br0">&#40;</span><span class="br0">&#41;</span>, <span class="st0">&quot;/ucac3&quot;</span>, conesearch.<span class="me1">current_di</span>
+r+<span class="st0">'/ucac3.config'</span><span class="br0">&#41;</span>
+    cherrypy.<span class="me1">engine</span>.<span class="me1">start</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+<span class="kw1">def</span> serverless<span class="br0">&#40;</span><span class="br0">&#41;</span>:
+    <span class="co1"># USE APACHE WITH MOD_PYTHON ON mothra.anu.edu.au:8088</span>
+    cherrypy.<span class="me1">server</span>.<span class="me1">unsubscribe</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+    cherrypy.<span class="me1">engine</span>.<span class="me1">timeout_monitor</span>.<span class="me1">unsubscribe</span><span class="br0">&#40;</span><span class="br0">&#41;</span> 
+    cherrypy.<span class="me1">engine</span>.<span class="me1">autoreload</span>.<span class="me1">unsubscribe</span><span class="br0">&#40;</span><span class="br0">&#41;</span> 
+    start<span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+<span class="kw1">def</span> serve<span class="br0">&#40;</span><span class="br0">&#41;</span>:
+    <span class="co1"># USE CHERRYPY BUILT-IN SERVER ON PORT 8088</span>
+    cherrypy.<span class="me1">engine</span>.<span class="me1">autoreload</span>.<span class="me1">subscribe</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+    cherrypy.<span class="me1">config</span>.<span class="me1">update</span><span class="br0">&#40;</span><span class="br0">&#123;</span><span class="st0">'server.socket_port'</span>:8088<span class="br0">&#125;</span><span class="br0">&#41;</span>
+    start<span class="br0">&#40;</span><span class="br0">&#41;</span>
+    cherrypy.<span class="me1">engine</span>.<span class="me1">block</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+<span class="kw1">if</span> __name__ == <span class="st0">&quot;__main__&quot;</span>:
+    serve<span class="br0">&#40;</span><span class="br0">&#41;</span>

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lte IE 8]><html class="no-js ie8"><![endif]-->
+<!--[if gt IE 8]><!--><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="no-js"><!--<![endif]-->
+<head>
+<meta name="viewport" content="width=1050" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href='http://fonts.googleapis.com/css?family=Rambla:700,400&amp;effect=shadow-multiple|outline' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css' />
+<link rel = "stylesheet" href = "style.css" type = "text/css" />
+<title>Simon J. Murphy - University of New South Wales Canberra</title>
+<script type="text/javascript">
+document.documentElement.className = document.documentElement.className.replace(/(\s|^)no-js(\s|$)/, '$1js$2');
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17301978-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+<div id = "contentcontainer">
+<div id="header">
+<span id="myname">Simon J. Murphy</span></br>
+<span id="myposn" class="font-effect-outline">Astronomer - University of New South Wales Canberra</span>
+<div id="navigation" class="font-effect-outline">
+<ul>
+<li><a href="index.html"><span class="icon">&#8962;</span>Home</a></li>
+<li><a href="research.html"><span class="icon">&#61603;</span>Research</a></li>
+<li><a class="nohover"><span class="icon">&#61669;</span>Teaching</a></li>
+<li><a href="publications.html"><span class="icon">&#61686;</span>Publications</a></li>
+<li><a href="CV.html"><span class="icon">&#128100;</span>Curriculum Vitae</a></li>
+</ul>
+</div>
+</div>
+<!--[if gt IE 8]><!-->
+<script type="text/javascript" src="js/header.js"></script>
+<!--<![endif]-->
+<div id='bodycontainer'>
+<div id="body">
+  <h1 class="font-effect-shadow-multiple">Teaching</h1>
+
+
+<p>I currently supervise tutorials and demonstrate laboratory sessions for <a href="#physics">first-year physics</a> and <a href="#astro">second-year astrophysics</a> courses at <a href="https://unsw.adfa.edu.au" target="_blank">UNSW Canberra</a>. This page is home to various resources I hope will be useful to students and others.</p>
+
+<a name="physics"></a>
+<h2>Physics 1A/B (ZPEM1501/02)</h2>
+
+<h3>Dimensional analysis</h3>
+
+<p>The <em>Trinity</em> nuclear test of July 16, 1945 is often used to teach dimensional analysis, usually purporting to follow the method published by British physicist Sir Geoffrey Taylor in 1950 to find the yield of the bomb. In reality his derivation was more complex, but the example is a good one pedagogically. To demonstrate the utility of dimensional analysis, I have written a short background to the problem and applied the analysis to Taylor's measurements to derive the yield of the test.</p>
+
+<p><a href="docs/trinity_plot.pdf"><img src="docs/trinity_plot.png" width="330px"/></a></p>
+
+<p><span class="icon">&#59201;</span><a href="docs/trinity.pdf" target="_blank">Full explanation and derivation</a> (PDF, 6 pages incl. references)
+<br/><span class="icon">&#59201;</span><a href="docs/trinity_plot.pdf" target="_blank">Radius-time plot used to calculate yield</a> (PDF, 21 kb)
+<br/><span class="icon">&#59201;</span><a href="docs/trinity_plot.py" target="_blank">Python script to create plot</a> (.py, 2 kb)
+</p>
+
+<p><strong>Update Feb 2021:</strong> <a href="https://arxiv.org/abs/2009.05674" target="_blank">Diaz (2021)</a> have applied Taylor's method to the 4 August 2020 explosion of a large amount of ammonium nitrate in Beirut, Lebanon. My PDF above now includes a brief description of their method and their radius-time plot.</p>
+
+<h3>Diffraction gratings</h3>
+
+<p>To aid students' understanding of diffraction gratings, and in particular how different orders and wavelengths can overlap at certain viewing angles, I created the following simulation of a 300 lines/mm transmission grating dispersing visible wavelengths (click on each image to enlarge):</p>
+
+<p><a href="img/diffraction_700.png"><img src="img/diffraction_700.png" width="330px" style="margin-right:20px"/></a><a href="img/diffraction_n.gif"><img src="img/diffraction_n.gif" width="330px"/></a></p>
+
+<p>From such a plot it is easy to see how the dispersive power of the grating increases with order number, with the caveat that higher orders overlap at certain angles. For example, the <em>n = </em>2 and <em>n = </em>3 orders partially overlap for this grating, with the 400 nm wavelength at <em>n = </em>3 coincident with the 600 nm wavelength at  <em>n = </em>2, as expected from the grating equation, <em>n &lambda; = d sin(&theta;)</em>. </p>
+
+<p>A spectrograph observing red wavelengths in the <em>n = </em>2 order around <em>&theta;</em> = 0.4 radians would require a blue-blocking filter to avoid contamination by the higher order. Alternatively, a red-blocking filter could be used to observe the <em>n = </em>3 blue spectrum at higher dispersion.</p>
+
+<a name="astro"></a>
+<h2>Astrophysics (ZPEM2509)</h2>
+
+<P>As students were unable to use computer labs in 2020 due to the pandemic, I created two astrophysics lab exercises on <a href="#eblab">eclipsing binaries</a> and <a href="#sunlab">the Sun</a> for second-year students to complete on their own devices using free, multi-platform software. I hope to expand on these in future once students are back in the lab. In  particular, taking advantage of <a href="https://jupyter.org" target="_blank">Jupyter notebooks</a> to guide students with limited or no programming experience through 'research-grade' astronomical investigations using Python.</P>
+
+<a name="eblab"></a>
+<h3>Eclipsing binary lab</h3>
+
+<p><span class="icon">&#59201;</span><a href="docs/eb/EB_lab_reading2020.pdf" target="_blank">Pre-lab reading (PDF)</a> - general introduction to binary stars and in particular eclipsing binaries.</p>
+
+<p>To complete the pre-lab activities you'll also need to use the eclipsing binary simulator created by the <a href="https://astro.unl.edu" target="_blank">NAAP project</a> at the University of Nebraska-Lincoln:</p>
+
+<span class="icon">&#59201;</span><a href="https://astro.unl.edu/nativeapps/" target="_blank">NAAP Labs software</a> - install then run the <em>"Eclipsing Binary Stars"</em> lab<br/>
+<span class="icon">&#59201;</span><a href="docs/eb/eclipsingbinarysim.swf" target="_blank"><s>Eclipsing Binary Simulator</s></a> (309 kb .swf file, deprecated as of 12/2020)
+
+<p>Once you've completed the pre-lab activities you can download the Jupyter (Python) notebook and all data files for the lab from my <a href="https://github.com/simonmurphy/eclipsingbinarylab" target="_blank">Github repository</a> and run it on your machine.</p>
+
+<p>Or, preferably, you can run the notebook in your browser using the <a href="https://mybinder.org/v2/gh/simonmurphy/eclipsingbinarylab/HEAD?filepath=eclipsingbinarylab.ipynb" target="_blank">Binder platform</a>:</p>
+<p><a href="https://mybinder.org/v2/gh/simonmurphy/eclipsingbinarylab/HEAD?filepath=eclipsingbinarylab.ipynb" target="_blank"><img src="https://mybinder.org/static/images/badge_logo.svg?"/></a></p>
+
+<p>Note: It may take a few moments to initialise the notebook. For more information on running Jupyter notebooks containing Python code, see <a href="https://realpython.com/jupyter-notebook-introduction/" target="_blank">here</a> or <a href="https://www.datacamp.com/community/tutorials/tutorial-jupyter-notebook" target="_blank">here</a>.</p>
+
+<p>Copies of the data files are available in the Github repository, or download them here:</p>
+<p>
+<span class="icon">&#59201;</span><a href="docs/eb/TESS.txt" target="_blank"><em>TESS</em> light curve</a><br/>
+<span class="icon">&#59201;</span><a href="docs/eb/SkyMapper.txt" target="_blank">SkyMapper light curve</a><br/>
+<span class="icon">&#59201;</span><a href="docs/eb/RV.txt" target="_blank">WiFeS radial velocity measurements</a><br/>
+</p>
+
+<p><strong>Update Sept 2020:</strong> Extra for experts! Use the masses and radii calculated in the lab to estimate the ages of the stars by comparing them to <a href="https://ui.adsabs.harvard.edu/abs/2015A%26A...577A..42B/abstract" target="_blank">Baraffe et al. (2015)</a> model isochrones:</p>
+
+<p><a href="https://mybinder.org/v2/gh/simonmurphy/eclipsingbinarylab/HEAD?filepath=ages.ipynb" target="_blank"><img src="https://mybinder.org/static/images/badge_logo.svg?"/></a></p>
+
+<p><strong>Update Oct 2020:</strong> The following video from the <a href="https://astro.unl.edu/video/demonstrationvideos/" target="_blank">UNL Astronomy Department</a>  shows a nice way to visualise an eclipsing binary system using dimmable light bulbs on a turntable!</p>
+
+<p><iframe style="width:560px;height:315px" width="560" height="315" src="https://www.youtube.com/embed/gmzmNDzUHEk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p><br/>
+
+<a name="sunlab"></a>
+<h3>Sun lab</h3> 
+
+<p><span class="icon">&#59201;</span><a href="docs/sun/sun_lab_reading2020.pdf" target="_blank">Pre-lab reading (PDF)</a> - general introduction to the Sun and the <em>SOHO</em> spacecraft.</p>
+
+<h4>Part I - Limb darkening</h4>
+
+<p>This <a href="docs/sun/Basic_images.zip">ZIP file (1.4 Mb)</a> contains 6 images of the Sun taken by several observatories and spacecraft at different wavelengths. Use these images in Part I of the lab script with the <a href="https://imagej.nih.gov/ij/index.html" target="_blank">ImageJ software</a> to measure the limb darkening profile of the solar disc and analyse the appearance of physical features (e.g. sun spots, flares, phages) at different wavelengths. </p>
+
+<h4>Part II - Solar rotation</h4>
+
+<p>This <a href="docs/sun/MDI_images.zip">ZIP file (9 Mb)</a> contains 30 daily 'intensitygram' images of the Sun taken by the MDI (Michelson Doppler Imager) instrument on the <a href="https://sohowww.nascom.nasa.gov/home.html" target="_blank"><em>Solar and Heliospheric Observatory (SOHO)</em></a> spacecraft between 2001 October 23 and November 21. The intensitygrams are approximately white-light images of the solar surface where cooler sun spots appear as darker regions.</p>
+
+<p>Use these images in Part II of the lab script to trace the motion of sun spots over the solar disc with time and determine the Sun's <em>sideral</em> rotation rate. </p>
+
+<p><div class="imgcredit" style="width:300px"><img src="docs/sun/sun_anim.gif"/><br/>
+Image credit: SOHO/MDI consortium, NASA/ESA. Animation created using http://gifmaker.me</div>
+</p>
+
+<h4>Part III - Motion of a Coronal Mass Ejection (CME)</h4>
+
+<p>This <a href="docs/sun/CME_images.zip">ZIP file (3 Mb)</a> contains 6 images of a CME moving away from the Sun, as observed by the LASCO (Large Angle and Spectrometric COronagraph) instrument on <em>SOHO</em> over several hours during 1999 August 5 and 6. A coronagraph is a special telescope designed to block light coming from the solar disc, in order to see the extremely faint emission from the region around the Sun, called the corona.</p>
+
+<p>Use these images in Part III of the lab script to trace the motion of the CME with time and calculate its velocity and acceleration. How does this compare to the solar surface escape speed?</p>
+
+<p><div class="imgcredit"><img src="docs/sun/cme.jpg"/><br/>
+Image credit: SOHO/LASCO consortium, NASA/ESA.</div>
+</p>
+
+
+<br/>
+
+<!-- <img src="img/topcat.png" width="100px" class="alignleft" alt="One cool cat..." /><em>Does what you want with astronomical catalogues and tables.</em> <a href="http://www.star.bris.ac.uk/~mbt/" target="_blank">Mark Taylor's</a> <a href="http://www.star.bris.ac.uk/~mbt/topcat/" target="_blank">Topcat</a> is quite simply one of the most useful pieces of astronomical software you will ever use. Reads almost any astronomical table format and talks to Virtual Observatory tools and services. It has hardly left my desktop for nearly eight years. </p>
+
+<p><a href="http://www.star.bris.ac.uk/~mbt/topcat/" target="_blank">Homepage</a> | <a href="http://www.star.bris.ac.uk/~mbt/topcat/topcat-full.jar" target="_blank">JAR file (19 MB)</a> | <a href="http://www.star.bris.ac.uk/~mbt/topcat/topcat-full.dmg" target="_target">OSX Application (22 MB .dmg)</a></p>
+<p>I have also modified the standard Topcat OSX application bundle (v4.2-3) to include JDBC drivers for SQL database access. This gives you the ability to query PostgreSQL and MySQL servers from the Topcat Load Table dialog (using the <img style="vertical-align:top" src="img/topcat_sql.png" alt="Load SQL" /> icon).</p>
+
+<p><a href="https://dl.dropboxusercontent.com/u/17469549/TOPCAT.zip">OSX Application (27 MB .zip)</a> | <a href="http://www.star.bris.ac.uk/~mbt/topcat/sun253/jdbcConfig.html" target="_blank">Topcat JDBC help page</a></p>
+
+<h3>Astroinformatics Tutorial</h3>
+
+<p>As part of the <a href="http://www.icrar.org/news/pastevents/astroinformatics" target="_blank">2011 Astroinformatics School</a> held at the International Centre for Radio Astronomy Research (ICRAR) in Perth, I created a short tutorial on the use of Topcat for basic data analysis, cross-matching, plotting and leveraging Virtual Observatory tools.</p>
+
+<p><a href="topcat/TOPCATpresentation.pdf" target="_blank">Introductory presentation (PDF, 4 Mb)</a> | <a href="topcat/TOPCATtutorial.pdf" target="_blank">Tutorial (PDF, 228 Kb)</a></p>
+
+<p><a href="topcat/RASS_Cha.xml" target="_blank">RASS optical sources in Chamaeleon (VOTable, 28 Kb)</a><br/>
+<a href="topcat/nomad.main_130.500_-79.000_0.500.xml" target="_blank">NOMAD sources 0.5 deg around (RA,Dec) = (130.5,-79) deg (VOTable, 6 Mb)</a><br/><a href="topcat/Eta_Cha_members.vot" target="_blank">Eta Cha members (VOTable, 8 Kb)</a>
+</p> -->
+</div>
+<div id="sidebar">
+<p><span class="icon">&#61664;</span><a href="mailto:s.murphy@adfa.edu.au">s.murphy@adfa.edu.au</a></p>
+<p><span class="icon" style="float: left; padding-top: 2pt">&#59172;</span><span style="display: inline-block;">School of Science<br/>
+University of NSW Canberra<br/>
+Northcott Drive, ACT 2600<br/>
+Australia
+<a href="https://goo.gl/maps/PhUtow7sCyL7pKD27" target="_blank">(Map)</a></span></p>
+<p><span class="icon">&#62265;</span>simon.murphy.nz</p>
+<p><span class="icon">&#61593;</span><a href="http://www.twitter.com/AstroSmurph" target="_blank">AstroSmurph</a></p>
+</div>
+<div id="bottom"></div>
+</div>
+<p class="bgcredit">Background image credit: Akira Fujii</p>
+</div>
+</body>
+</html>
