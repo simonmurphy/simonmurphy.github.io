@@ -72,7 +72,7 @@ $(document).ready(function() {
     let embed_pdfs = {};
 
     $('.embed-pdf').each(function() {
-        var $pdfViewer = $('<iframe src="https://docs.google.com/viewer?url=' + $(this).data('url') + '&embedded=true" style="width: 100%; height: 100%" frameborder="0" scrolling="no"></iframe>');
+        var $pdfViewer = $('<iframe src="http://docs.google.com/viewer?url=' + $(this).data('url') + '&embedded=true" style="width: 100%; height: 100%" frameborder="0" scrolling="no"></iframe>');
         $pdfViewer.appendTo($(this));
         console.log($(this).attr('id') + " created");
         embed_pdfs[$(this).attr('id')] = 'created';
@@ -91,7 +91,7 @@ $(document).ready(function() {
                 if ($($('#' + key)).find('iframe').contents().find("body").contents().length == 0) {
                     remaining_embeds++;
                     console.log(key + " resetting");
-                    $($('#' + key)).find('iframe').attr('src', src='https://docs.google.com/viewer?url=' + $('#' + key).data('url') + '&embedded=true');
+                    $($('#' + key)).find('iframe').attr('src', src='http://docs.google.com/viewer?url=' + $('#' + key).data('url') + '&embedded=true');
                 }
             }
             catch(err) {
